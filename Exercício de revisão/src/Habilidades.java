@@ -1,29 +1,35 @@
 
 public class Habilidades {
 	/* ATRIBUTOS */
-	private String habilidades[];
+	static String habilidades[];
 	private int valores[];
 	
 	/* CONSTRUTORES */
 	public Habilidades() {
-		this.habilidades = null;
 		this.valores = null;
 	}
 	
-	public Habilidades(String habilidades[], int valores[]) throws Exception {
+	public Habilidades(int valores[]) throws Exception {
 		if (habilidades.length != valores.length)
 			throw new Exception("quantidade de habilidades nao condiz com quantidade de valores fornecidos");
-		this.habilidades = habilidades;
 		this.valores = valores;
 	}
 
 	/* METODOS */
-	public String[] getHabilidades() {
-		return habilidades;
+	public String getHabilidades(int i) {
+		return habilidades[i];
 	}
 
 	public int[] getValores() {
 		return valores;
+	}
+	
+	public int getValores(int i) {
+		return valores[i];
+	}
+	
+	public void setValores(int i[]) {
+		this.valores = i;
 	}
 	
 	public void updateValorUnico(int valor, int posicao) {
@@ -32,4 +38,6 @@ public class Habilidades {
 	public void updateValores(int valores[]) {
 		this.valores = valores;
 	}
+	
+	
 }

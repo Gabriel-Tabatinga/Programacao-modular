@@ -1,5 +1,5 @@
 
-public class Pessoas {
+public class Pessoas{
 	
 	/* ATRIBUTOS */
 	private String nome;
@@ -8,19 +8,18 @@ public class Pessoas {
 	
 	/* CONSTRUTORES */
 	public Pessoas() {
-		nome = null;
-		habilidade = null;
+
 	}
 	
-	public Pessoas(String nome, Habilidades habilidade) {
+	public Pessoas(String nome) {
 		this.nome = nome;
-		this.habilidade = habilidade;
+		this.habilidade = new Habilidades();
 	}
 	
-	public Pessoas(String nome, String habilidades[], int valores[]) throws Exception {
+	public Pessoas(String nome, int valores[]) throws Exception {
 		this.nome = nome;
 		try {
-			this.habilidade = new Habilidades(habilidades, valores);
+			this.habilidade = new Habilidades(valores);
 		}catch(Exception e) {
 			throw new Exception("Erro ao criar a classe habilidades");
 		}
@@ -35,12 +34,13 @@ public class Pessoas {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public void setValores(int i[]) {
+		this.habilidade.setValores(i);
+	}
 
 	public Habilidades getHabilidade() {
 		return habilidade;
 	}
 
-	public void setHabilidade(Habilidades habilidade) {
-		this.habilidade = habilidade;
-	}
 }
