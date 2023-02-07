@@ -5,3 +5,5 @@ Ana Marcela;3;5;2;2;2
 Rebeca;1;5;0;0;5 
 Martine;3;3;5;5;1 
 Hebert;2;0;5;5;0 
+Gabriel;5;4;0;0;0 
+Leonardo;5;4;0;0;0 

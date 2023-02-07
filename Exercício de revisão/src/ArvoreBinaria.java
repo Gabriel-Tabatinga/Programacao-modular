@@ -11,6 +11,8 @@ public class ArvoreBinaria {
 	private String melhorMedia[];
 	private int contador = 0;
 	private int melhorMediaInt;
+	private String melhorMediaPond[];
+	private float melhorMediaPondFloat;
 	
 	public ArvoreBinaria() {
 		
@@ -203,6 +205,32 @@ public class ArvoreBinaria {
 		}
 	}
 	
+	
+	public void encontrarMediaPonderada(int denomOb, int denomImp) {
+		encontrarMediaPonderada(this.raiz, denomOb, denomImp);
+	}
+
+	private void encontrarMediaPonderada(No raizSubarvore, int denomOb, int denomImp) {
+		
+		if (raizSubarvore != null) {
+			encontrarMediaPonderada(raizSubarvore.getEsquerda(), denomOb, denomImp);
+			float media = 0;
+			media = raizSubarvore.getItem().getHabilidade().getValores(denomOb) * 5 + raizSubarvore.getItem().getHabilidade().getValores(denomImp) * 3;
+			media /= 8;
+			if(media >melhorMediaPondFloat) {
+				melhorMediaPondFloat=media;
+				Arrays.fill(melhorMediaPond, null);
+				contador = 0;
+				melhorMediaPond[contador] = raizSubarvore.getItem().getNome();
+			}else if(media == melhorMediaPondFloat) {
+				contador++;
+				melhorMediaPond[contador] = raizSubarvore.getItem().getNome();
+			}
+			
+			encontrarMediaPonderada(raizSubarvore.getDireita(), denomOb, denomImp);
+		}
+	}
+	
 	public int getAltura(){
 	      return getAltura(raiz, 0);
 	   }
@@ -284,14 +312,28 @@ public String[] umaHabilidade(String habilidade) {
 		return maior;
 		
 	}
-	public String umaObrigUmaImp(String obrigatorio, String importante) {
+	public String[] umaObrigUmaImp(String obrigatorio, String importante) {
+		melhorMediaPondFloat = 0;
+		contador = 0;
+		this.melhorMediaPond = new String[99];
+		this.melhorMediaPond[0] = raiz.getItem().getNome();
+		int denomObg = 0, denomImp = 0;
+		for(int j=0;j<Habilidades.habilidades.length;j++) {
+			if(Habilidades.habilidades[j] == obrigatorio) {
+				denomObg = j;
+			}
+			if(Habilidades.habilidades[j] == importante) {
+				denomImp = j;
+			}
+		}
 		
-		
-		return null;
+		encontrarMediaPonderada(denomObg, denomImp);
+		return melhorMediaPond;
 	}
 
 	public String[] conjuntohabili() {
 		melhorMediaInt = 0;
+		contador = 0;
 		this.melhorMedia = new String[99];
 		this.melhorMedia[0] = raiz.getItem().getNome();
 		encontrarMedia();

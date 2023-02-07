@@ -156,8 +156,18 @@ public class Screen extends JFrame{
             public void actionPerformed(ActionEvent e) {
             	resultado.setBackground(Color.lightGray);
             	resultado.setOpaque(true);
-                String selected = "O melhor candidato é: " + arvore.umaObrigUmaImp(opcoesObrigatorio.getItemAt(opcoesObrigatorio.getSelectedIndex()), opcoesImportante.getItemAt(opcoesImportante.getSelectedIndex()) );
-                resultado.setText(selected);
+            	int j =0;
+            	String result[] = arvore.umaObrigUmaImp(opcoesObrigatorio.getItemAt(opcoesObrigatorio.getSelectedIndex()), opcoesImportante.getItemAt(opcoesImportante.getSelectedIndex()) );
+            	String textoResultado= "O melhor candidato é: ";
+            	textoResultado += result[j];
+            	j++;
+            	while(result[j] != null) {
+            		textoResultado += ", ";
+            		textoResultado += result[j];
+            		j++;
+            	}
+        		resultado.setText(textoResultado);
+
             }
         });
 		
